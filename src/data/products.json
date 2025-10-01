@@ -1,0 +1,158 @@
+[
+  {
+    "id": 1,
+    "title": "arroz",
+    "description": "arroz blanco",
+    "code": "ARZ001",
+    "price": 30,
+    "status": true,
+    "stock": 100,
+    "category": "alimentos",
+    "thumbnails": [
+      "ruta/imagen1.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "fideos",
+    "description": "fideos secos",
+    "code": "FD001",
+    "price": 25,
+    "status": true,
+    "stock": 150,
+    "category": "alimentos",
+    "thumbnails": [
+      "ruta/imagen2.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "aceite",
+    "description": "aceite de girasol",
+    "code": "ACE001",
+    "price": 80,
+    "status": true,
+    "stock": 75,
+    "category": "alimentos",
+    "thumbnails": [
+      "ruta/imagen3.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "leche",
+    "description": "leche entera",
+    "code": "LEC001",
+    "price": 60,
+    "status": true,
+    "stock": 200,
+    "category": "lacteos",
+    "thumbnails": [
+      "ruta/imagen4.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "queso",
+    "description": "queso mozzarella",
+    "code": "QSO001",
+    "price": 150,
+    "status": true,
+    "stock": 50,
+    "category": "lacteos",
+    "thumbnails": [
+      "ruta/imagen5.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "yogur",
+    "description": "yogur natural",
+    "code": "YGR001",
+    "price": 40,
+    "status": true,
+    "stock": 120,
+    "category": "lacteos",
+    "thumbnails": [
+      "ruta/imagen6.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "manzanas",
+    "description": "manzanas rojas",
+    "code": "MNZ001",
+    "price": 50,
+    "status": true,
+    "stock": 80,
+    "category": "frutas",
+    "thumbnails": [
+      "ruta/imagen7.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "bananas",
+    "description": "bananas maduras",
+    "code": "BNN001",
+    "price": 45,
+    "status": true,
+    "stock": 90,
+    "category": "frutas",
+    "thumbnails": [
+      "ruta/imagen8.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "naranjas",
+    "description": "naranjas jugosas",
+    "code": "NRJ001",
+    "price": 55,
+    "status": true,
+    "stock": 70,
+    "category": "frutas",
+    "thumbnails": [
+      "ruta/imagen9.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "pollo",
+    "description": "pollo fresco",
+    "code": "PLL001",
+    "price": 200,
+    "status": true,
+    "stock": 60,
+    "category": "carnes",
+    "thumbnails": [
+      "ruta/imagen10.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "carne de res",
+    "description": "carne de res magra",
+    "code": "CRR001",
+    "price": 300,
+    "status": true,
+    "stock": 40,
+    "category": "carnes",
+    "thumbnails": [
+      "ruta/imagen11.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "cerdo",
+    "description": "cerdo fresco",
+    "code": "CRD001",
+    "price": 250,
+    "status": true,
+    "stock": 55,
+    "category": "carnes",
+    "thumbnails": [
+      "ruta/imagen12.jpg"
+    ]
+  }
+]

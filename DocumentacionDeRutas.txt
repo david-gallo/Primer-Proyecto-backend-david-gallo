@@ -1,0 +1,50 @@
+==============================
+DOCUMENTACIÓN DE RUTAS BACKEND
+==============================
+
+PRODUCTOS (/api/products/)
+--------------------------
+GET    /api/products/                → Listar todos los productos
+GET    /api/products/:pid            → Obtener producto por ID
+POST   /api/products/                → Agregar producto (body: datos del producto, sin id)
+PUT    /api/products/:pid            → Actualizar producto por ID (body: campos a modificar)
+DELETE /api/products/:pid            → Eliminar producto por ID
+
+CARRITOS (/api/carts/)
+----------------------
+POST   /api/carts/                   → Crear carrito vacío (id autogenerado)
+GET    /api/carts/:cid               → Listar productos de un carrito específico
+POST   /api/carts/:cid/product/:pid  → Agregar producto al carrito (body: { "quantity": n })
+
+--------------------------
+Ejemplo de uso en Postman:
+--------------------------
+
+1. Crear producto:
+   POST /api/products/
+   Body (JSON):
+   {
+     "title": "arroz",
+     "description": "arroz blanco",
+     "code": "ARZ001",
+     "price": 30,
+     "status": true,
+     "stock": 100,
+     "category": "alimentos",
+     "thumbnails": ["ruta/imagen1.jpg"]
+   }
+
+2. Crear carrito:
+   POST /api/carts/
+
+3. Agregar producto al carrito:
+   POST /api/carts/1/product/2
+   Body (JSON):
+   {
+     "quantity": 3
+   }
+
+4. Ver productos de un carrito:
+   GET /api/carts/1
+
+--------------------------
