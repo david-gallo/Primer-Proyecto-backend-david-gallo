@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Home</title></head>
+<body>
+  <h1>Productos</h1>
+  <ul>
+    {{#each productos}}
+      <li>#{{id}} - {{title}} - ${{price}}</li>
+    {{/each}}
+  </ul>
+  <a href="/realtimeproducts">Ver en tiempo real</a>
+</body>
+</html>

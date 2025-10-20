@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Real Time Products</title>
+</head>
+<body>
+  <h1>Productos (Tiempo Real)</h1>
+  <ul id="productsList">
+    {{#each productos}}
+      <li data-id="{{id}}">{{title}} - ${{price}} <button class="delBtn">Eliminar</button></li>
+    {{/each}}
+  </ul>
+
+  <h2>Añadir producto</h2>
+  <form id="addProductForm">
+    <input name="title" placeholder="title" required />
+    <input name="price" type="number" placeholder="price" required />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <!-- El script de socket y la lógica se cargan desde layout (public/js/realtime.js) -->
+</body>
+</html>

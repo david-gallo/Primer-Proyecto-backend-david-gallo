@@ -1,48 +1,56 @@
-
-const fs = require('fs');
-const path = require('path');
+const Product = require('../models/Product');
 
 class ProductManager {
+  async leerProductos() {
+    return Product.find().lean({ virtuals: true });
+  }
 
-static path = path.join(__dirname, '../data/products.json');
-    static async leerProductos() {
-    try {
-      let productos = await fs.promises.readFile(this.path, "utf-8");
-        return JSON.parse(productos);
+  async leerProductosPaginated(options = {}) {
+    const page = Number(options.page) > 0 ? Number(options.page) : 1;
+    const limit = Number(options.limit) > 0 ? Number(options.limit) : 10;
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (options.category) filter.category = options.category;
+    if (options.q) filter.$or = [
+      { title: { $regex: options.q, $options: 'i' } },
+      { description: { $regex: options.q, $options: 'i' } }
+    ];
+
+    const sortObj = {};
+    if (options.sort) {
+      const parts = options.sort.split('_');
+      if (parts.length === 2) {
+        const [field, dir] = parts;
+        sortObj[field] = dir === 'desc' ? -1 : 1;
+      }
     }
-    catch (error){
-        return [];
-}}  
-static async agregarProducto(productoData) {
-    const productos = await this.leerProductos();
-    const autoID = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
-    const nuevoProducto = {
-        id: autoID,
-        ...productoData
-    };
-    productos.push(nuevoProducto);
-    await fs.promises.writeFile(this.path, JSON.stringify(productos, null, 2));
-    return nuevoProducto;
-}
-static async actualizarProducto(id, datosActualizados) {
-    const productos = await this.leerProductos();
-    const index = productos.findIndex(p => p.id == id);
-    if (index === -1) return null; 
-    productos[index] = { ...productos[index], ...datosActualizados, id: productos[index].id };
-    await fs.promises.writeFile(this.path, JSON.stringify(productos, null, 2));
-    return productos[index];
-}
-static async eliminarProducto(id) {
-    const productos = await this.leerProductos();
-    const index = productos.findIndex(p => p.id == id);
-    if (index === -1) return null; 
 
-    productos.splice(index, 1); 
-    await fs.promises.writeFile(this.path, JSON.stringify(productos, null, 2));
-    return true;
-}
+    const total = await Product.countDocuments(filter);
+    const products = await Product.find(filter).sort(sortObj).skip(skip).limit(limit).lean({ virtuals: true });
+    const totalPages = Math.max(1, Math.ceil(total / limit));
+
+    return { products, total, totalPages, page, limit };
+  }
+
+  async leerProductoPorId(id) {
+    return Product.findById(id).lean({ virtuals: true });
+  }
+
+  async agregarProducto(product) {
+    const nuevo = await Product.create(product);
+    return nuevo.toObject({ virtuals: true });
+  }
+
+  async actualizarProducto(id, cambios) {
+    const actualizado = await Product.findByIdAndUpdate(id, cambios, { new: true }).lean({ virtuals: true });
+    return actualizado;
+  }
+
+  async eliminarProducto(id) {
+    const res = await Product.findByIdAndDelete(id);
+    return !!res;
+  }
 }
 
-module.exports = ProductManager;
-
-
+module.exports = new ProductManager();
