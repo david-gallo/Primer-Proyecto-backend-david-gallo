@@ -4,36 +4,18 @@ Alumno: David Gallo
 Curso/Comisión: Backend - Comision #76570  
 Proyecto: Proyecto Carrito y Productos — 2° Pre-Entrega (Websockets y Handlebars)
 
-## Descripción
-Servidor Node.js + Express para gestión de productos y carritos de compras. Persistencia en archivos JSON. Esta entrega incorpora Handlebars para vistas y Socket.IO para actualización en tiempo real de la vista `realtimeproducts`.
 
 ## Rutas de la API
 
-### Productos (`/api/products`)
 - GET `/api/products/` — Listar todos los productos
 - GET `/api/products/:pid` — Obtener producto por ID
-- POST `/api/products/` — Crear producto (body: datos del producto)
-- PUT `/api/products/:pid` — Actualizar producto por ID
-- DELETE `/api/products/:pid` — Eliminar producto por ID
 
 ### Carritos (`/api/carts`)
-- POST `/api/carts/` — Crear carrito vacío
-- GET `/api/carts/:cid` — Ver productos de un carrito
-- POST `/api/carts/:cid/product/:pid` — Agregar producto al carrito (body: `{ "quantity": n }`)
-
-### Vistas (Handlebars)
 - GET `/` — home (lista server-side render de productos)
-- GET `/realtimeproducts` — vista en tiempo real con Socket.IO (formulario para crear producto + botones eliminar)
-
-# PRY_1_Coderhouse
 
 Proyecto backend con Express, Handlebars, Socket.IO y MongoDB (Mongoose).
-
-## Requisitos
 - Node.js 18+ (probado en Node 22)
 - MongoDB (local o Atlas)
-
-## Variables de entorno
 Crea un archivo `.env` en la raíz con:
 
 MONGO_URI=mongodb://127.0.0.1:27017/ProyectoCoder
@@ -64,11 +46,7 @@ MONGO_URI=mongodb://127.0.0.1:27017/ProyectoCoder
 
 ## Pasos para levantar el proyecto (rápido)
 
-1. Clona el repo e instala dependencias:
-
 ```pwsh
-npm install
-```
 
 2. Crea el `.env` en la raíz y valida `MONGO_URI` (ejemplo para Mongo local):
 
@@ -78,30 +56,51 @@ echo "MONGO_URI=mongodb://127.0.0.1:27017/ProyectoCoder" > .env
 
 3. Sembrar la base de datos con productos (usa `src/data/products.json` actual):
 
+# Proyecto Backend - Carrito y Productos
+
+Servidor Node.js con Express, Mongoose, Handlebars y Socket.IO para gestionar productos y carritos.
+
+Requisitos
+- Node.js 18+
+- MongoDB (local o Atlas)
+
+Instalación rápida
+1. Instalar dependencias:
+
+```pwsh
+npm install
+```
+
+2. Crear `.env` copiando `.env.example` y completar `MONGO_URI`.
+
+3. (Opcional) Sembrar la base de datos:
+
 ```pwsh
 npm run seed
 ```
 
-4. Levantar en desarrollo:
+4. Levantar la aplicación:
 
 ```pwsh
 npm run dev
 ```
 
-5. Abrir en el navegador:
-
+URLs útiles
 - Home: http://localhost:8080/
 - Realtime: http://localhost:8080/realtimeproducts
 
-## Troubleshooting rápido
-- Si `npm run dev` falla con Exit Code 1: revisa que MongoDB esté corriendo y que `MONGO_URI` apunte correctamente. Mira la salida completa de la terminal para el stack trace.
-- Si ves errores de CastError para ids, el proyecto valida que los ids sean ObjectId de Mongo; revisa que las peticiones usen `_id` devueltos por la API o el virtual `id`.
+Comandos
+- `npm run seed` — insertar productos
+- `npm run dev` — arrancar en desarrollo
+- `npm test` — ejecutar pruebas
 
-> Nota: los archivos JSON originales fueron archivados en `src/data/backup/` y los archivos en `src/data/` han sido neutralizados (arrays vacíos) para evitar confusión. El script de seed lee `src/data/products.json`.
+Rutas principales (resumen)
+- Productos: `/api/products` (GET/POST/PUT/DELETE)
+- Carritos: `/api/carts` (crear, ver, agregar producto, actualizar cantidad, vaciar)
 
+Archivos clave
+- `src/models/`, `src/managers/`, `src/routes/`, `src/views/`, `src/scripts/`
 
-## Postman
-Incluyo una colección Postman (`postman_collection.json`) con las peticiones básicas (GET/POST/PUT/DELETE products y endpoints de carrito).
+Incluye `postman_collection.json` con peticiones básicas.
 
-## Autor
-David Gallo
+Autor: David Gallo
